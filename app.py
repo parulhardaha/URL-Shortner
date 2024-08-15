@@ -4,7 +4,9 @@ import random
 import string
 import os
 
-app = Flask(__name__)
+#app = Flask(__name__)
+app = Flask(__name__, static_folder='url-shortner/static')
+
 app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL', 'sqlite:///urls.sqlite3')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.secret_key = 'parul'
