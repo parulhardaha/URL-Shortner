@@ -4,6 +4,7 @@
 
 
 
+
 2. After Submitting a URL,this page displays the shortened code with options to Open,Copy or Go back.
  
 ![Screenshot 2024-08-22 220656](https://github.com/user-attachments/assets/8debe1f4-9663-4cc2-a7d1-29ac564a9355)
