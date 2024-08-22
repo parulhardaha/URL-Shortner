@@ -1,7 +1,90 @@
 {% extends "base.html" %}
-{% block title %}Home Page{% endblock %}
+{% block title %}Short URL Code{% endblock %}
 
 {% block content %}
-    <h1>https://parul-url.com/{{short_url_display}}</h1>
-    <a href="{{ url_for('home') }}" <button type="button" class="btn btn-secondary">Back To Home</button>
+    <style>
+        body {
+            background-image: url("{{ url_for('static', filename='image/mario.jpg') }}");
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            display: flex;
+            justify-content: center; /* Horizontally center the box */
+            align-items: flex-start; /* Align items at the top */
+            height: 100vh; /* Full viewport height */
+            padding-top: 20px; /* Optional padding from the top */
+            color: #ffffff96; /* Text color for contrast */
+        }
+        .box {
+            background-color: rgba(0, 0, 0, 0.7); /* Slightly transparent background */
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            width: 500px; /* Fixed width for the box */
+        }
+
+        .code {
+            font-size: 2em;
+            margin: 20px 0;
+        }
+
+        .buttons {
+            margin-top: 20px;
+        }
+
+        .btn {
+            margin: 0 10px;
+        }
+    </style>
+
+    <div class="container">
+        <div class="box">
+            <h3>Your Shortened URL Code</h3>
+            <p class="code">{{ short_url_display }}</p>
+            <div class="buttons">
+                <a href="{{ url_for('home') }}">
+                    <button type="button" class="btn btn-secondary">Back</button>
+                </a>
+                <button
+                    type="button"
+                    class="btn btn-warning"
+                    onclick="window.open('{{ url_for('redirection', short_url=short_url_display) }}', '_blank');">
+                    Open
+                </button>
+                
+                <!-- Copy to Clipboard Button -->
+                <button type="button" class="btn btn-info" onclick="copyToClipboard()">
+                    Copy to Clipboard
+                </button>
+                
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript for Copy to Clipboard -->
+    <script>
+        document.getElementById('copyButton').addEventListener('click', function() {
+            var shortUrlElement = document.getElementById("shortUrl").innerText;
+            var tempInput = document.createElement("input");
+            tempInput.setAttribute("type", "text");
+            tempInput.setAttribute("value", shortUrlElement);
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            try {
+                var successful = document.execCommand('copy');
+                var msg = successful ? 'successful' : 'unsuccessful';
+                console.log('Copying text command was ' + msg);
+                alert('URL copied to clipboard!');
+            } catch (err) {
+                console.error('Oops, unable to copy', err);
+            }
+            document.body.removeChild(tempInput);
+        });
+    </script>
 {% endblock %}

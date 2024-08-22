@@ -1,8 +1,43 @@
 {% extends "base.html" %}
-{% block title %}View all URLS{% endblock %}
+{% block title %}View All URLs{% endblock %}
 
 {% block content %}
+    <!-- Flexbox for the titles -->
+    <div class="d-flex align-items-center">
+        <!-- Short URL Title -->
+        <div class="px-4">
+            <h2>Short</h2>
+        </div>
+
+        <!-- Spacer to match the divider size -->
+        <div class="px-4"></div>
+
+        <!-- Long URL Title -->
+        <div class="px-4">
+            <h2>Long</h2>
+        </div>
+    </div>
+
+    <hr> <!-- Horizontal line to separate titles from content -->
+
+    <!-- Loop through all URLs -->
     {% for url in vals %}
-        <p><strong>Short:</strong>{{url.short}} <strong>Long:</strong> {{url.long}}</p>
+        <!-- Flexbox for each URL pair -->
+        <div class="d-flex align-items-center">
+            <!-- Short URL -->
+            <div class="px-4">
+                <p>{{ url.short }}</p>
+            </div>
+
+            <!-- Vertical Divider -->
+            <div style="border-left: 2px solid #000; height: auto; margin: 0 20px;"></div>
+
+            <!-- Long URL (Clickable) -->
+            <div class="px-4">
+                <p>
+                    <a href="{{ url.long }}" target="_blank">{{ url.long }}</a>
+                </p>
+            </div>
+        </div>
     {% endfor %}
 {% endblock %}

@@ -1,20 +1,19 @@
 {% extends "base.html" %}
-{% block title % } shorten <URL>{% endblock %}</URL>
-
+{% block title %}Shorten URL{% endblock %}
 
 {% block content %}
-<form action="#", mehtod="post">
+
+<form action="#" method="post"> 
     <label for="url"><h3>Enter an http:// URL:</h3></label>
 
     <input type="url" name="nm" id="url"
-    placeholder="http://example.com"
-    pattern="http://.*" size="50"
-    required>
+           placeholder="http://example.com"
+           pattern="http://.*" size="110"
+           required>
 
     <br>
 
-    <input type="submit" value="submit" class="btn btn-primary">
-
+    <input type="submit" value="Submit" class="btn btn-primary">
 </form>
 
 {% endblock %}

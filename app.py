@@ -5,7 +5,7 @@ import string
 import os
 
 #app = Flask(__name__)
-app = Flask(__name__, static_folder='url-shortner/static')
+app = Flask(__name__, static_folder='static')
 
 app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL', 'sqlite:///urls.sqlite3')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
@@ -69,6 +69,8 @@ def display_short_url(url):
 @app.route('/all_urls')
 def display_all():
     return render_template('all_urls.html', vals=Urls.query.all())
+
+
 
 if __name__ == '__main__':
     app.run(port=5000, debug=True)
